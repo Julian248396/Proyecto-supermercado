@@ -1,6 +1,6 @@
 # 🛒 Sistema de Inventario - La Bodeguita
 
-## 📌 Descripción
+## - Descripción
 
 Este proyecto es un sistema de gestión de inventario desarrollado en Python para una tienda local llamada **La Bodeguita**.  
 Permite administrar productos, consultar información detallada, analizar el inventario y simular compras mediante un menú interactivo en consola.
