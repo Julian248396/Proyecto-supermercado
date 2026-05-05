@@ -28,9 +28,7 @@ def mostrar_inventario(inventario_tienda):
         print("  " + "-" * 48)
 
 
-# ══════════════════════════════════════════════════════════════
-#  FUNCIÓN 2 - MOSTRAR DETALLE DE UN PRODUCTO
-# ══════════════════════════════════════════════════════════════
+
 
 def mostrar_detalle_producto(inventario_tienda):
     """
@@ -50,31 +48,31 @@ def mostrar_detalle_producto(inventario_tienda):
     print("DETALLE DEL PRODUCTO".center(52))
     print("=" * 52)
 
-    # Información básica
+    
     print(f"\n  Nombre    : {p['nombre']}")
     print(f"  Categoría : {p['categoria']}")
     print(f"  Precio    : ${p['precio']:,.0f}")
     print(f"  Cantidad  : {p['cantidad']}")
 
-    # Tupla - Unidad de medida
+    
     unidad = p["unidad_medida"]
     print(f"\n  --- Unidad de Medida ---")
     print(f"  Tipo        : {unidad[0]}")
     print(f"  Abreviatura : {unidad[1]}")
     print(f"  Referencia  : {unidad[2]} {unidad[1]}")
 
-    # Set - Etiquetas
+    
     print(f"\n  --- Etiquetas ---")
     for etiqueta in p["etiquetas"]:
         print(f"  - {etiqueta}")
 
-    # Lista - Historial de precios
+    
     promedio = calcular_promedio_precios(p["historial_precios"])
     print(f"\n  --- Historial de Precios ---")
     print(f"  Precios registrados : {p['historial_precios']}")
     print(f"  Precio promedio     : ${promedio:,.0f}")
 
-    # Diccionario anidado - Proveedor
+    
     prov = p["proveedor"]
     print(f"\n  --- Proveedor ---")
     print(f"  Nombre    : {prov['nombre']}")
@@ -82,9 +80,7 @@ def mostrar_detalle_producto(inventario_tienda):
     print(f"  Teléfono  : {prov['telefono']}")
 
 
-# ══════════════════════════════════════════════════════════════
-#  FUNCIÓN 3 - ANÁLISIS DEL INVENTARIO
-# ══════════════════════════════════════════════════════════════
+
 
 def modulo_analisis(inventario_tienda):
     """Módulo con análisis generales del inventario."""
@@ -128,9 +124,7 @@ def modulo_analisis(inventario_tienda):
                 print("  Opción inválida.")
 
 
-# ══════════════════════════════════════════════════════════════
-#  FUNCIÓN 4 - INFORMACIÓN DE LA TIENDA
-# ══════════════════════════════════════════════════════════════
+
 
 def modulo_info(inventario_tienda):
     """Muestra la información general de la tienda."""
@@ -166,9 +160,7 @@ def modulo_info(inventario_tienda):
                 print("  Opción inválida.")
 
 
-# ══════════════════════════════════════════════════════════════
-#  FUNCIÓN 5 - CRUD DE PRODUCTOS (crear, leer, actualizar, eliminar)
-# ══════════════════════════════════════════════════════════════
+
 
 def crud_productos(inventario_tienda):
     """
@@ -188,7 +180,7 @@ def crud_productos(inventario_tienda):
 
         match opcion:
 
-            # CREATE - Agregar producto
+           
             case "1":
                 print("\n  --- AGREGAR PRODUCTO ---")
                 clave = input("  Clave única (ej: 'sal marina'): ").strip().lower()
@@ -236,7 +228,6 @@ def crud_productos(inventario_tienda):
                 }
                 print(f"\n  Producto '{nombre}' agregado correctamente.")
 
-            # READ - Consultar producto
             case "2":
                 clave = input("\n  Clave del producto a consultar: ").strip().lower()
                 if clave in inventario_tienda:
@@ -249,7 +240,7 @@ def crud_productos(inventario_tienda):
                 else:
                     print(f"\n  Error: '{clave}' no fue encontrado.")
 
-            # UPDATE - Modificar campo
+        
             case "3":
                 clave = input("\n  Clave del producto a modificar: ").strip().lower()
                 if clave not in inventario_tienda:
@@ -289,7 +280,7 @@ def crud_productos(inventario_tienda):
                     case _:
                         print("  Opción inválida.")
 
-            # DELETE - Eliminar producto
+          
             case "4":
                 clave = input("\n  Clave del producto a eliminar: ").strip().lower()
                 if clave not in inventario_tienda:
@@ -313,84 +304,6 @@ def crud_productos(inventario_tienda):
             case _:
                 print("  Opción inválida.")
 
-def comprar_productos(inventario_tienda):
-    """
-    Permite al usuario comprar productos del inventario.
-    Reduce la cantidad disponible y calcula el total a pagar.
-    """
-    carrito = []
-    total_compra = 0
-
-    while True:
-        print("\n--- COMPRA DE PRODUCTOS ---")
-        print("1. Ver productos disponibles")
-        print("2. Comprar producto")
-        print("3. Ver total a pagar")
-        print("4. Finalizar compra")
-
-        opcion = input("  Seleccione: ")
-
-        match opcion:
-
-            case "1":
-                for clave, producto in inventario_tienda.items():
-                    print(f"\n  Clave: {clave}")
-                    print(f"  Nombre: {producto['nombre']}")
-                    print(f"  Precio: ${producto['precio']:,.0f}")
-                    print(f"  Cantidad disponible: {producto['cantidad']}")
-
-            case "2":
-                clave = input("\n  Ingrese la clave del producto: ").strip().lower()
-
-                if clave not in inventario_tienda:
-                    print("  Producto no existe.")
-                    continue
-
-                producto = inventario_tienda[clave]
-
-                if producto["cantidad"] == 0:
-                    print("  Producto agotado.")
-                    continue
-
-                try:
-                    cantidad = int(input("  Cantidad a comprar: "))
-                except ValueError:
-                    print("  Entrada inválida.")
-                    continue
-
-                if cantidad <= 0:
-                    print("  Cantidad inválida.")
-                    continue
-
-                if cantidad > producto["cantidad"]:
-                    print("  No hay suficiente stock.")
-                    continue
-
-                subtotal = cantidad * producto["precio"]
-                total_compra += subtotal
-
-                producto["cantidad"] -= cantidad
-
-                carrito.append((producto["nombre"], cantidad, subtotal))
-
-                print(f"  Producto agregado al carrito. Subtotal: ${subtotal:,.0f}")
-
-            case "3":
-                print("\n--- RESUMEN DE COMPRA ---")
-                if not carrito:
-                    print("  No hay productos en el carrito.")
-                else:
-                    for item in carrito:
-                        print(f"  {item[0]} x{item[1]} -> ${item[2]:,.0f}")
-                    print(f"\n  TOTAL A PAGAR: ${total_compra:,.0f}")
-
-            case "4":
-                print("\n  Compra finalizada.")
-                print(f"  TOTAL PAGADO: ${total_compra:,.0f}")
-                break
-
-            case _:
-                print("  Opción inválida.")
                 
 def mostrar_menu(titulo, opciones):
     """Auxiliar 1: Muestra un menú con título y opciones numeradas."""
@@ -411,10 +324,6 @@ def calcular_promedio_precios(historial):
         return 0
     return sum(historial) / len(historial)
 
-
-# ══════════════════════════════════════════════════════════════
-#  MENÚ PRINCIPAL
-# ══════════════════════════════════════════════════════════════
 
 def main():
     inventario_tienda = {
@@ -542,8 +451,6 @@ def main():
             case "5":
                 modulo_info(inventario_tienda)
             case "6":
-                comprar_productos(inventario_tienda)
-            case "7":
                 print("\n  ¡Hasta pronto! - La Bodeguita\n")
                 break
             case _:
