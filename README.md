@@ -3,17 +3,17 @@
 **La Bodeguita** es un sistema de gestión de inventario para una tienda local, desarrollado en Python. Permite administrar productos, consultar información detallada, analizar el inventario y gestionar datos de la tienda de forma sencilla desde la consola.
 
 ---
-![image alt](https://github.com/Julian248396/Proyecto-supermercado/blob/ada224da1bad0b8020c04673d9b455d79d599219/sadwf.png)
+![image alt](https://github.com/Julian248396/Proyecto-supermercado/blob/c5734a86f0137caf7d76710b79de7782a803ec74/Foto%20menu.png)
 ---
 
-## ⚙️ Requisitos
+## Requisitos
 
 - Python 3.10 o superior (se utiliza `match` / `case`)
 - No requiere librerías externas
 
 ---
 
-## ▶️ Cómo ejecutar
+## Cómo ejecutar
 
 ```bash
 python Sistema_de_inventario_para_supermercado.py
@@ -23,7 +23,7 @@ Al ejecutar, se abrirá el menú principal desde el cual se accede a todos los m
 
 ---
 
-## 🗂️ Módulos del sistema
+## Módulos del sistema
 
 ### 1. Gestión de Productos (CRUD)
 Permite crear, consultar, modificar y eliminar productos del inventario.
@@ -42,7 +42,7 @@ Muestra los datos generales de La Bodeguita y permite consultar datos individual
 
 ---
 
-## 🧱 Estructura de un Producto
+## Estructura de un Producto
 
 Cada producto en el inventario maneja las siguientes estructuras de datos:
 
@@ -59,7 +59,7 @@ Cada producto en el inventario maneja las siguientes estructuras de datos:
 
 ---
 
-## 🔧 Funciones del sistema
+## Funciones del sistema
 
 | Función                      | Tipo       | Descripción                                              |
 |-----------------------------|------------|----------------------------------------------------------|
@@ -74,17 +74,17 @@ Cada producto en el inventario maneja las siguientes estructuras de datos:
 
 ---
 
-## 🏪 Información de la Tienda
+## Información de la Tienda
 
 | Campo      | Valor             |
 |-----------|-------------------|
-| Nombre    | La Bodeguita      |
+| Nombre    | La Bodega      |
 | Dirección | Vallecito, Tolima |
 | Tipo      | Tienda Local      |
 | Año       | 2020              |
 
 ---
 
-## 👨‍💻 Autores
+## Autores
 
 Proyecto desarrollado para la asignatura de **Programación de Computadores**.
