@@ -8,7 +8,19 @@ info_tienda = (
 
 
 def mostrar_inventario(inventario_tienda):
-    
+  """
+    Muestra en consola todos los productos del inventario con su información básica.
+
+    Recorre el diccionario principal e imprime por cada producto su clave,
+    nombre, categoría, precio, cantidad y estado. El estado se determina
+    automáticamente: 'Disponible' si la cantidad es mayor a 0, 'Agotado' si es 0.
+
+    Parámetros:
+        inventario_tienda (dict): Diccionario principal con todos los productos.
+
+    Retorna:
+        None (solo imprime en consola).
+    """
     if not inventario_tienda:
         print("\n  El inventario está vacío.")
         return
@@ -30,7 +42,20 @@ def mostrar_inventario(inventario_tienda):
 
 
 def mostrar_detalle_producto(inventario_tienda):
-  
+   """
+    Solicita la clave de un producto y muestra toda su información detallada.
+
+    Accede a todas las estructuras internas del producto: la tupla de unidad
+    de medida, el set de etiquetas, la lista de historial de precios (calculando
+    su promedio con calcular_promedio_precios) y el diccionario anidado del
+    proveedor con nombre, ciudad y teléfono.
+
+    Parámetros:
+        inventario_tienda (dict): Diccionario principal con todos los productos.
+
+    Retorna:
+        None (solo imprime en consola).
+    """
     clave = input("\n  Ingrese la clave del producto: ").strip().lower()
 
     if clave not in inventario_tienda:
@@ -78,7 +103,20 @@ def mostrar_detalle_producto(inventario_tienda):
 
 
 def analisis_inventario(inventario_tienda):
+   """
+    Módulo de análisis general del inventario con tres opciones de consulta.
 
+    Opción 1: Obtiene las categorías únicas usando un set por comprensión.
+    Opción 2: Lista los productos cuya cantidad es igual a 0 (agotados).
+    Opción 3: Encuentra el producto más caro y el más barato usando max() y min()
+              con una función lambda como criterio de comparación.
+
+    Parámetros:
+        inventario_tienda (dict): Diccionario principal con todos los productos.
+
+    Retorna:
+        None (solo imprime en consola).
+    """
     while True:
         mostrar_menu("ANÁLISIS DEL INVENTARIO", [
             "Ver categorías únicas",
@@ -121,7 +159,20 @@ def analisis_inventario(inventario_tienda):
 
 
 def informacion_tienda(inventario_tienda):
+  """
+    Muestra los datos generales de La Bodeguita almacenados en la tupla info_tienda.
 
+    Opción 1: Imprime todos los datos de la tienda (nombre, dirección, tipo, año).
+    Opción 2: Permite al usuario consultar un dato específico ingresando su índice.
+              Maneja errores de tipo ValueError e IndexError si el índice es inválido.
+
+    Parámetros:
+        inventario_tienda (dict): Recibido por consistencia con los demás módulos,
+                                  aunque esta función usa la tupla global info_tienda.
+
+    Retorna:
+        None (solo imprime en consola).
+    """
     while True:
         mostrar_menu("INFORMACIÓN DE LA TIENDA", [
             "Ver información completa",
@@ -156,7 +207,25 @@ def informacion_tienda(inventario_tienda):
 
 
 def gestionar_productos(inventario_tienda):
+ """
+    CRUD completo para administrar los productos del inventario.
 
+    Opción 1 (Create):  Solicita todos los datos del nuevo producto y lo agrega
+                        al diccionario con su estructura completa (str, float, int,
+                        tuple, list, set y dict anidado del proveedor).
+    Opción 2 (Read):    Consulta y muestra la información básica de un producto
+                        por su clave, incluyendo datos del proveedor.
+    Opción 3 (Update):  Permite modificar nombre, categoría, precio o cantidad.
+                        Al cambiar el precio, guarda el valor anterior en historial_precios.
+    Opción 4 (Delete):  Elimina un producto previa confirmación del usuario.
+                        Los productos esenciales (arroz diana, leche entera) están protegidos.
+
+    Parámetros:
+        inventario_tienda (dict): Diccionario principal con todos los productos.
+
+    Retorna:
+        None (modifica el diccionario directamente en memoria).
+    """
     while True:
         mostrar_menu("GESTIÓN DE PRODUCTOS", [
             "Agregar producto",
@@ -297,7 +366,19 @@ def gestionar_productos(inventario_tienda):
 
                 
 def mostrar_menu(titulo, opciones):
+ """
+    Función auxiliar que imprime un menú formateado con título y opciones numeradas.
 
+    Dibuja una línea de separación, centra el título y lista cada opción
+    con su número correspondiente. Es reutilizada por todos los módulos del sistema.
+
+    Parámetros:
+        titulo  (str):  Texto que se muestra centrado como encabezado del menú.
+        opciones (list): Lista de strings, cada uno representa una opción del menú.
+
+    Retorna:
+        None (solo imprime en consola).
+    """
     print("\n" + "=" * 52)
     print(titulo.center(52))
     print("=" * 52)
@@ -307,7 +388,18 @@ def mostrar_menu(titulo, opciones):
 
 
 def calcular_promedio_precios(historial):
+ """
+    Función auxiliar que calcula el precio promedio a partir de un historial de precios.
 
+    Suma todos los valores de la lista y los divide entre la cantidad de elementos.
+    Es usada por mostrar_detalle_producto() para mostrar el promedio al usuario.
+
+    Parámetros:
+        historial (list): Lista de precios flotantes registrados históricamente.
+
+    Retorna:
+        float: Promedio de los precios. Retorna 0 si la lista está vacía.
+    """
     if not historial:
         return 0
     return sum(historial) / len(historial)
@@ -316,6 +408,18 @@ def calcular_promedio_precios(historial):
 
 
 def main():
+     """
+    Función principal del sistema. Inicializa el inventario con los productos
+    precargados y lanza el menú principal en un bucle hasta que el usuario
+    elija salir.
+
+    El inventario_tienda es un diccionario de diccionarios anidados donde cada
+    clave es el nombre del producto en minúsculas y su valor contiene todas
+    las estructuras de datos del producto (str, float, int, tuple, list, set, dict).
+
+    Retorna:
+        None.
+    """
     inventario_tienda = {
     "arroz diana": {
         "nombre": "Arroz Diana x 500g",
