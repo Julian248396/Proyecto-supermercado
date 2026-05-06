@@ -1,75 +1,98 @@
-# 🛒 Sistema de Inventario - La Bodeguita
+# 🛒 Sistema de Inventario — La Bodeguita
 
-## - Descripción
-
-Este proyecto es un sistema de gestión de inventario desarrollado en Python para una tienda local llamada **La Bodeguita**.  
-Permite administrar productos, consultar información detallada, analizar el inventario y simular compras mediante un menú interactivo en consola.
-
-El programa aplica estructuras de datos fundamentales como **diccionarios, listas, tuplas y conjuntos**, además de buenas prácticas de programación modular.
+**La Bodeguita** es un sistema de gestión de inventario para una tienda local, desarrollado en Python. Permite administrar productos, consultar información detallada, analizar el inventario y gestionar datos de la tienda de forma sencilla desde la consola.
 
 ---
 
-## ⚙️ Funcionalidades
+## 📁 Estructura del Proyecto
 
-### 🧾 Gestión de productos (CRUD)
-- Agregar nuevos productos
-- Consultar productos existentes
-- Modificar información (nombre, categoría, precio, cantidad)
-- Eliminar productos (con validaciones)
-
----
-
-### 📦 Inventario
-- Visualización completa del inventario
-- Estado de productos (Disponible / Agotado)
+```
+Sistema_de_inventario_para_supermercado.py
+README.md
+RequerimientosFuncionales.md
+```
 
 ---
 
-### 🔍 Detalle de productos
-- Información completa del producto
-- Unidad de medida (tupla)
-- Etiquetas (set)
-- Historial de precios (lista)
-- Información del proveedor (diccionario anidado)
+## ⚙️ Requisitos
+
+- Python 3.10 o superior (se utiliza `match` / `case`)
+- No requiere librerías externas
 
 ---
 
-### 📊 Análisis del inventario
-- Categorías únicas
-- Productos agotados
-- Producto más caro y más barato
-
----
-
-### 🏪 Información de la tienda
-- Datos generales almacenados en una tupla
-- Consulta por índice
-
----
-
-### 🛒 Compra de productos
-- Visualización de productos disponibles
-- Compra con validación de stock
-- Carrito de compras
-- Cálculo del total a pagar
-
----
-
-## 🧱 Estructuras de Datos Utilizadas
-
-- **Diccionario:** Inventario de productos  
-- **Lista:** Historial de precios  
-- **Tupla:** Información fija de la tienda y unidad de medida  
-- **Set:** Etiquetas de productos  
-
----
-
-## ▶️ Cómo ejecutar el programa
-
-1. Tener instalado Python 3
-2. Descargar o clonar el repositorio
-3. Ejecutar el archivo:
+## ▶️ Cómo ejecutar
 
 ```bash
-python pasto.py
+python Sistema_de_inventario_para_supermercado.py
+```
 
+Al ejecutar, se abrirá el menú principal desde el cual se accede a todos los módulos.
+
+---
+
+## 🗂️ Módulos del sistema
+
+### 1. Gestión de Productos (CRUD)
+Permite crear, consultar, modificar y eliminar productos del inventario.
+
+### 2. Ver Inventario Completo
+Muestra todos los productos con su nombre, categoría, precio, cantidad y estado (Disponible / Agotado).
+
+### 3. Ver Detalle de un Producto
+Muestra la información completa de un producto: unidad de medida, etiquetas, historial de precios con promedio, y datos del proveedor.
+
+### 4. Análisis del Inventario
+Permite consultar categorías únicas, productos agotados, y el producto más caro y más barato.
+
+### 5. Información de la Tienda
+Muestra los datos generales de La Bodeguita y permite consultar datos individuales por índice.
+
+---
+
+## 🧱 Estructura de un Producto
+
+Cada producto en el inventario maneja las siguientes estructuras de datos:
+
+| Campo             | Tipo       | Descripción                              |
+|------------------|------------|------------------------------------------|
+| `nombre`         | `str`      | Nombre completo del producto             |
+| `categoria`      | `str`      | Categoría a la que pertenece             |
+| `precio`         | `float`    | Precio actual                            |
+| `cantidad`       | `int`      | Unidades disponibles en inventario       |
+| `unidad_medida`  | `tuple`    | (tipo, abreviatura, referencia)          |
+| `historial_precios` | `list` | Lista de precios anteriores              |
+| `etiquetas`      | `set`      | Características del producto             |
+| `proveedor`      | `dict`     | Diccionario anidado con nombre, ciudad y teléfono |
+
+---
+
+## 🔧 Funciones del sistema
+
+| Función                      | Tipo       | Descripción                                              |
+|-----------------------------|------------|----------------------------------------------------------|
+| `mostrar_menu()`            | Auxiliar   | Dibuja cualquier menú con título y opciones numeradas    |
+| `calcular_promedio_precios()` | Auxiliar | Calcula el promedio de una lista de precios              |
+| `mostrar_inventario()`      | Principal  | Lista todos los productos con información básica         |
+| `mostrar_detalle_producto()` | Principal | Muestra toda la info de un producto incluyendo datos anidados |
+| `gestionar_productos()`     | CRUD       | Agregar, consultar, modificar y eliminar productos       |
+| `analisis_inventario()`     | Principal  | Análisis general del inventario                          |
+| `informacion_tienda()`      | Principal  | Muestra los datos de la tienda                           |
+| `main()`                    | Entrada    | Inicializa el inventario y lanza el menú principal       |
+
+---
+
+## 🏪 Información de la Tienda
+
+| Campo      | Valor             |
+|-----------|-------------------|
+| Nombre    | La Bodeguita      |
+| Dirección | Vallecito, Tolima |
+| Tipo      | Tienda Local      |
+| Año       | 2020              |
+
+---
+
+## 👨‍💻 Autores
+
+Proyecto desarrollado para la asignatura de **Programación de Computadores**.
