@@ -1,5 +1,5 @@
 info_tienda = (
-    "La Bodeguita",
+    "La Bodega",
     "Vallecito, Tolima",
     "Tienda Local",
     2020
@@ -418,7 +418,7 @@ def main():
 }
 
     while True:
-        mostrar_menu("SISTEMA DE INVENTARIO - LA BODEGUITA", [
+        mostrar_menu("SISTEMA DE INVENTARIO - LA BODEGA", [
             "Gestión de productos",
             "Ver inventario completo",
             "Ver detalle de un producto",
@@ -441,7 +441,7 @@ def main():
             case "5":
                 informacion_tienda(inventario_tienda)
             case "6":
-                print("\n  ¡Hasta pronto! - La Bodeguita\n")
+                print("\n  ¡Hasta pronto! - La Bodega\n")
                 break
             case _:
                 print("  Opción inválida.")
