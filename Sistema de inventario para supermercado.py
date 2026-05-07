@@ -8,19 +8,7 @@ info_tienda = (
 
 
 def mostrar_inventario(inventario_tienda):
-  """
-    Muestra en consola todos los productos del inventario con su información básica.
-
-    Recorre el diccionario principal e imprime por cada producto su clave,
-    nombre, categoría, precio, cantidad y estado. El estado se determina
-    automáticamente: 'Disponible' si la cantidad es mayor a 0, 'Agotado' si es 0.
-
-    Parámetros:
-        inventario_tienda (dict): Diccionario principal con todos los productos.
-
-    Retorna:
-        None (solo imprime en consola).
-    """
+    
     if not inventario_tienda:
         print("\n  El inventario está vacío.")
         return
@@ -42,20 +30,7 @@ def mostrar_inventario(inventario_tienda):
 
 
 def mostrar_detalle_producto(inventario_tienda):
-   """
-    Solicita la clave de un producto y muestra toda su información detallada.
-
-    Accede a todas las estructuras internas del producto: la tupla de unidad
-    de medida, el set de etiquetas, la lista de historial de precios (calculando
-    su promedio con calcular_promedio_precios) y el diccionario anidado del
-    proveedor con nombre, ciudad y teléfono.
-
-    Parámetros:
-        inventario_tienda (dict): Diccionario principal con todos los productos.
-
-    Retorna:
-        None (solo imprime en consola).
-    """
+  
     clave = input("\n  Ingrese la clave del producto: ").strip().lower()
 
     if clave not in inventario_tienda:
@@ -103,20 +78,7 @@ def mostrar_detalle_producto(inventario_tienda):
 
 
 def analisis_inventario(inventario_tienda):
-   """
-    Módulo de análisis general del inventario con tres opciones de consulta.
 
-    Opción 1: Obtiene las categorías únicas usando un set por comprensión.
-    Opción 2: Lista los productos cuya cantidad es igual a 0 (agotados).
-    Opción 3: Encuentra el producto más caro y el más barato usando max() y min()
-              con una función lambda como criterio de comparación.
-
-    Parámetros:
-        inventario_tienda (dict): Diccionario principal con todos los productos.
-
-    Retorna:
-        None (solo imprime en consola).
-    """
     while True:
         mostrar_menu("ANÁLISIS DEL INVENTARIO", [
             "Ver categorías únicas",
@@ -129,11 +91,20 @@ def analisis_inventario(inventario_tienda):
 
         match opcion:
             case "1":
-                categorias = {p["categoria"] for p in inventario_tienda.values()}
+                categorias = set()
+
+                for p in inventario_tienda.values():
+                    categorias.add(p["categoria"])
+
                 print(f"\n  Categorías únicas ({len(categorias)}): {categorias}")
 
             case "2":
-                agotados = [p["nombre"] for p in inventario_tienda.values() if p["cantidad"] == 0]
+                agotados = []
+
+                for p in inventario_tienda.values():
+                    if p["cantidad"] == 0:
+                        agotados.append(p["nombre"])
+
                 if agotados:
                     print("\n  Productos agotados:")
                     for nombre in agotados:
@@ -158,6 +129,7 @@ def analisis_inventario(inventario_tienda):
 
 
 
+
 def informacion_tienda(inventario_tienda):
   """
     Muestra los datos generales de La Bodeguita almacenados en la tupla info_tienda.
@@ -176,7 +148,6 @@ def informacion_tienda(inventario_tienda):
     while True:
         mostrar_menu("INFORMACIÓN DE LA TIENDA", [
             "Ver información completa",
-            "Consultar un dato por índice",
             "Volver"
         ])
 
@@ -190,15 +161,6 @@ def informacion_tienda(inventario_tienda):
                 print(f"  Año      : {info_tienda[3]}")
 
             case "2":
-                for i, dato in enumerate(info_tienda):
-                    print(f"  {i} - {dato}")
-                try:
-                    idx = int(input("  Ingrese el índice: "))
-                    print(f"  Dato seleccionado: {info_tienda[idx]}")
-                except (ValueError, IndexError):
-                    print("  Índice inválido.")
-
-            case "3":
                 break
 
             case _:
