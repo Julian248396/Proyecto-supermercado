@@ -42,7 +42,7 @@ def mostrar_inventario(inventario_tienda):
 
 
 def mostrar_detalle_producto(inventario_tienda):
-  """
+    """
     Solicita la clave de un producto y muestra toda su información detallada.
 
     Accede a todas las estructuras internas del producto: la tupla de unidad
@@ -103,7 +103,7 @@ def mostrar_detalle_producto(inventario_tienda):
 
 
 def analisis_inventario(inventario_tienda):
- """
+    """
     Módulo de análisis general del inventario con tres opciones de consulta.
 
     Opción 1: Obtiene las categorías únicas usando un set por comprensión.
@@ -169,7 +169,7 @@ def analisis_inventario(inventario_tienda):
 
 
 def informacion_tienda(inventario_tienda):
-  """
+    """
     Muestra los datos generales de La Bodeguita almacenados en la tupla info_tienda.
 
     Opción 1: Imprime todos los datos de la tienda (nombre, dirección, tipo, año).
@@ -207,7 +207,7 @@ def informacion_tienda(inventario_tienda):
 
 
 def gestionar_productos(inventario_tienda):
- """
+   """
     CRUD completo para administrar los productos del inventario.
 
     Opción 1 (Create):  Solicita todos los datos del nuevo producto y lo agrega
@@ -366,7 +366,7 @@ def gestionar_productos(inventario_tienda):
 
                 
 def mostrar_menu(titulo, opciones):
- """
+    """
     Función auxiliar que imprime un menú formateado con título y opciones numeradas.
 
     Dibuja una línea de separación, centra el título y lista cada opción
@@ -388,7 +388,7 @@ def mostrar_menu(titulo, opciones):
 
 
 def calcular_promedio_precios(historial):
- """
+    """
     Función auxiliar que calcula el precio promedio a partir de un historial de precios.
 
     Suma todos los valores de la lista y los divide entre la cantidad de elementos.
@@ -408,7 +408,7 @@ def calcular_promedio_precios(historial):
 
 
 def main():
-     """
+    """
     Función principal del sistema. Inicializa el inventario con los productos
     precargados y lanza el menú principal en un bucle hasta que el usuario
     elija salir.
