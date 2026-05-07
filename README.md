@@ -38,7 +38,7 @@ Muestra la información completa de un producto: unidad de medida, etiquetas, hi
 Permite consultar categorías únicas, productos agotados, y el producto más caro y más barato.
 
 ### 5. Información de la Tienda
-Muestra los datos generales de La Bodeguita y permite consultar datos individuales por índice.
+Muestra los datos generales de La Bodega y permite consultar datos individuales por índice.
 
 ---
 
